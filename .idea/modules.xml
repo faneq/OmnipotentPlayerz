@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://C:\workspace\OmnipotentPlayer\BlackDog.iml" filepath="C:\workspace\OmnipotentPlayer\BlackDog.iml" />
+      <module fileurl="file://C:\workspace\OmnipotentPlayer\BlackDogxx.iml" filepath="C:\workspace\OmnipotentPlayer\BlackDogxx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OmnipotentPlayer.iml" filepath="$PROJECT_DIR$/OmnipotentPlayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Pushlib/Pushlib.iml" filepath="$PROJECT_DIR$/Pushlib/Pushlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\workspace\OmnipotentPlayer\app\app.iml" filepath="C:\workspace\OmnipotentPlayer\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://C:\workspace\OmnipotentPlayer\library\library.iml" filepath="C:\workspace\OmnipotentPlayer\library\library.iml" />
+    </modules>
+  </component>
+</project>

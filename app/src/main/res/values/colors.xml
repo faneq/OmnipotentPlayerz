@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="line">#999999</color>
+    <color name="list_text_title">#5c5c5c</color>
+    <color name="contacts_organge">#f2ae38</color>
+
+    <!-- DialogBtnBackground -->
+    <color name="dialog_btn_pressed">#E5E5E5</color>
+    <color name="dialog_btn_unpress">#f7f7f7</color>
+    <color name="dialog_style_bg">#00000000</color>
+    <color name="dialog_text_color">#d1d1d1</color>
+    <color name="dialog_item_color">#e8e8e8</color>
+    <color name="white">#ffffff</color>
+</resources>
