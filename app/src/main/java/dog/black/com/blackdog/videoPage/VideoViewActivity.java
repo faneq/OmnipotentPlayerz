@@ -52,8 +52,10 @@ import cn.bmob.v3.update.UpdateResponse;
 import dog.black.com.blackdog.App;
 import dog.black.com.blackdog.GuideActivity;
 import dog.black.com.blackdog.mainView.adapter.ChangeAdapter;
+import dog.black.com.blackdog.mainView.bean.ShareInfo;
 import dog.black.com.blackdog.utils.AndroidUtil;
 import dog.black.com.blackdog.utils.AppShare;
+import dog.black.com.blackdog.utils.ShareUtils;
 import dog.black.com.blackdog.videoPage.bean.ConstantsBean;
 import dog.black.com.blackdog.videoPage.bean.PlayUrlEntity;
 import dog.black.com.blackdog.videoPage.bean.ViedeoTitle;
@@ -78,13 +80,16 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
     private MyHandler handler = new MyHandler(this);
     private final static int START_CODE = 2000;
     private RelativeLayout bannerAds;
-
+    private ViewPager mViewPager;
+    private String shareUrl;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_activity);
         bannerAds = (RelativeLayout) findViewById(R.id.banner_ads);
+        findViewById(R.id.bt_question).setOnClickListener(this);
+        findViewById(R.id.share).setOnClickListener(this);
         PushAgent.getInstance(this).onAppStart();
         //第一：默认初始化
         Bmob.initialize(this, "a209a5bf05f24481f85b1778be4b6a4d");
@@ -102,6 +107,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
         });
         BmobUpdateAgent.setUpdateOnlyWifi(false);
         initAds();
+        getShareInfo();
     }
 
     private void initAds() {
@@ -139,6 +145,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
             case R.id.bt_play:
                 mCurrentFragment = adapter.getCurrentFragment();
                 mCurrentFragment.play();
+                MobclickAgent.onEvent(App.getInstance(), "00003");
                 break;
             case R.id.bt_back:
                 mCurrentFragment = adapter.getCurrentFragment();
@@ -149,10 +156,20 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
                 mCurrentFragment.goForward();
                 break;
             case R.id.bt_change:
+                MobclickAgent.onEvent(App.getInstance(), "00004");
                 showPop();
                 break;
             case R.id.bt_add:
                 addInterface();
+                break;
+            case R.id.bt_question:
+                MobclickAgent.onEvent(App.getInstance(), "00002");
+                mViewPager.setCurrentItem(mDatasTitle.size() - 1);
+                break;
+            case R.id.share:
+                ShareUtils.shareGirl("全网vip视频播放器:复制浏览器打开\n"
+                        , shareUrl, this);
+                MobclickAgent.onEvent(App.getInstance(), "00001");
                 break;
         }
         if (mUpdateDialog != null) {
@@ -280,14 +297,14 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void setOtherView() {
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        viewPager.setOffscreenPageLimit(4);
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        mViewPager.setOffscreenPageLimit(4);
         adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), this, mDatasTitle);
-        viewPager.setAdapter(adapter);
+        mViewPager.setAdapter(adapter);
 
         //TabLayout
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(mViewPager);
 
         bt_back = (Button) findViewById(R.id.bt_back);
         bt_back.setOnClickListener(this);
@@ -405,8 +422,47 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             mActivity.get().dialogAds();
-            sendEmptyMessageDelayed(START_CODE, 1000 * 60 * 10);
+            sendEmptyMessageDelayed(START_CODE, 1000 * 60 * 15);
         }
     }
+
+    public void addApk() {
+        ShareInfo p2 = new ShareInfo();
+        p2.setUrl("");
+        p2.setVision("1");
+        //        p2.setUrl("http://youdushipin.com/vip.php?url=");
+        p2.save(new SaveListener<String>() {
+            @Override
+            public void done(String objectId, BmobException e) {
+                if (e == null) {
+                    Toast.makeText(getApplication(), "添加成功", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplication(), "添加失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void getShareInfo() {
+        BmobQuery<ShareInfo> query = new BmobQuery<>();
+        //查询playerName叫“比目”的数据
+        //        query.addWhereEqualTo("playerName", "比目");
+        //返回50条数据，如果不加上这条语句，默认返回10条数据
+        query.setLimit(1);
+        //        query.setSkip(counts); // 忽略前10条数据（即第一页数据结果）
+        //执行查询方法
+        query.findObjects(new FindListener<ShareInfo>() {
+            @Override
+            public void done(List<ShareInfo> object, BmobException e) {
+                if (e == null) {
+                    shareUrl = object.get(0).getUrl();
+                    setOtherView();
+                } else {
+                    Logger.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                }
+            }
+        });
+    }
+
 }
 

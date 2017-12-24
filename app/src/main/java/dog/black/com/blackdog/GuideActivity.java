@@ -26,6 +26,7 @@ import com.tencent.smtt.sdk.QbSdk;
 import java.util.ArrayList;
 import java.util.List;
 
+import dog.black.com.blackdog.utils.AppShare;
 import dog.black.com.blackdog.videoPage.VideoViewActivity;
 
 /**
@@ -51,30 +52,30 @@ public class GuideActivity extends Activity implements SplashADListener {
 
     private void initView() {
         initX5();
-        //        if (AppShare.getInstence(App.getInstance()).getBoolean("isFirst", true)) {
-        //            setContentView(R.layout.activity_guide);
-        //            findViewById(R.id.bt_next).setOnClickListener(new View.OnClickListener() {
-        //                @Override
-        //                public void onClick(View v) {
-        //                    AppShare.getInstence(App.getInstance()).putBooleanValue("isFirst", false);
-        //                    //                    goMain();
-        //                }
-        //            });
-        //        } else {
-        setContentView(R.layout.activity_splash);
-        container = (ViewGroup) this.findViewById(R.id.splash_container);
-        skipView = (TextView) findViewById(R.id.skip_view);
-        fetchSplashAD(this, container, skipView, APPID, SplashPosID, this, 0);
-        //            goMain();
-        //        }
+        if (AppShare.getInstence(App.getInstance()).getBoolean("isFirst", true)) {
+            setContentView(R.layout.activity_guide);
+            findViewById(R.id.bt_next).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppShare.getInstence(App.getInstance()).putBooleanValue("isFirst", false);
+                                        goMain();
+                }
+            });
+        } else {
+            setContentView(R.layout.activity_splash);
+            container = (ViewGroup) this.findViewById(R.id.splash_container);
+            skipView = (TextView) findViewById(R.id.skip_view);
+            fetchSplashAD(this, container, skipView, APPID, SplashPosID, this, 0);
+//            goMain();
+        }
     }
 
-    //    private void goMain() {
-    //        Intent intent = new Intent();
-    //        intent.setClass(GuideActivity.this, VideoViewActivity.class);
-    //        startActivity(intent);
-    //        finish();
-    //    }
+    private void goMain() {
+        Intent intent = new Intent();
+        intent.setClass(GuideActivity.this, VideoViewActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     /**
      * 初始化h5内核

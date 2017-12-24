@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="scrollable"/>
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp"
+            app:tabMode="scrollable" />
+
+        <ImageView
+            android:id="@+id/share"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@id/tabLayout"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_10"
+            android:src="@mipmap/share" />
+    </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#ffffff"/>
+        android:background="#ffffff" />
+
 
     <RelativeLayout
         android:id="@+id/banner_ads"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +59,7 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginRight="@dimen/dp_10"
                 android:background="@mipmap/left"
-                android:padding="5dp"/>
+                android:padding="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -57,7 +75,7 @@
                 android:layout_margin="3dp"
                 android:layout_marginRight="@dimen/dp_10"
                 android:background="@mipmap/right"
-                android:padding="5dp"/>
+                android:padding="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -73,7 +91,7 @@
                 android:layout_margin="3dp"
                 android:layout_marginRight="@dimen/dp_10"
                 android:background="@mipmap/play"
-                android:padding="5dp"/>
+                android:padding="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,7 +107,23 @@
                 android:layout_margin="3dp"
                 android:layout_marginRight="@dimen/dp_10"
                 android:background="@mipmap/change"
-                android:padding="5dp"/>
+                android:padding="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/bt_question"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_margin="3dp"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@mipmap/question"
+                android:padding="5dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

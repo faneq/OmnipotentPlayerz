@@ -2,5 +2,9 @@
     {
         "merged": "C:\\workspace\\ads\\OmnipotentPlayer\\Pushlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\upush_notification.xml",
         "source": "C:\\workspace\\ads\\OmnipotentPlayer\\Pushlib\\build\\intermediates\\bundles\\debug\\res\\layout\\upush_notification.xml"
+    },
+    {
+        "merged": "G:\\Android_project\\workspace\\OmnipotentPlayerz\\Pushlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\upush_notification.xml",
+        "source": "G:\\Android_project\\workspace\\OmnipotentPlayerz\\Pushlib\\build\\intermediates\\bundles\\debug\\res\\layout\\upush_notification.xml"
     }
 ]

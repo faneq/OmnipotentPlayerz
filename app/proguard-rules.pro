@@ -166,3 +166,10 @@ public static final int *;
     public *;
 }
 -keep class android.support.v4.**{ *;}
+-keep class MTT.ThirdAppInfoNew {
+    *;
+}
+-keep class com.tencent.** {
+    *;
+}
+-keep class android.support.v4.**{ *;}
