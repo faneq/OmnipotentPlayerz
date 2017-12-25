@@ -1,6 +1,8 @@
 package dog.black.com.blackdog.videoPage;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fen.asunder.R;
+import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
@@ -86,6 +89,15 @@ public class PageFragment extends Fragment {
         webSettings.setSaveFormData(true);// 保存表单数据
         webSettings.setSupportMultipleWindows(true);// 新加
         mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
+                if (!ADFilterTool.hasAd(getContext(), s)) {
+                    return super.shouldInterceptRequest(webView, url);//正常加载
+                } else {
+                    return new WebResourceResponse(null, null, null);//含有广告资源屏蔽请求
+                }
+            }
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String s) {
                 loadHistoryUrls.add(s);
@@ -172,5 +184,19 @@ public class PageFragment extends Fragment {
         //1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
 
         mWebView.getX5WebViewExtension().invokeMiscMethod("setVideoParams", data);
+    }
+
+}
+
+class ADFilterTool {
+    public static boolean hasAd(Context context, String url) {
+        Resources res = context.getResources();
+        String[] adUrls = res.getStringArray(R.array.adBlockUrl);
+        for (String adUrl : adUrls) {
+            if (url.contains(adUrl)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
