@@ -74,10 +74,13 @@ public class PageFragment extends Fragment {
 
     private void initView() {
         WebSettings webSettings = mWebView.getSettings();
+        setInitSetting();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setDomStorageEnabled(true);//这句话必须保留。。否则无法播放优酷视频网页。。其他的可以
         webSettings.setDefaultTextEncodingName("utf-8");//这句话去掉也没事。。只是设置了编码格式
         webSettings.setPluginState(WebSettings.PluginState.ON);
+        webSettings.setPluginsEnabled(true);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setSavePassword(true);
         webSettings.setSaveFormData(true);// 保存表单数据
@@ -98,7 +101,7 @@ public class PageFragment extends Fragment {
             }
         });
         //http/https混合
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             webSettings.setMixedContentMode(WebSettings.LOAD_NORMAL);
         }
         mWebView.setWebChromeClient(new WebChromeClient() {
@@ -156,4 +159,18 @@ public class PageFragment extends Fragment {
         }
     }
 
+    private void setInitSetting() {
+        Bundle data = new Bundle();
+
+        data.putBoolean("standardFullScreen", false);
+        //true表示标准全屏，false表示X5全屏；不设置默认false，
+
+        data.putBoolean("supportLiteWnd", false);
+        //false：关闭小窗；true：开启小窗；不设置默认true，
+
+        data.putInt("DefaultVideoScreen", 2);
+        //1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
+
+        mWebView.getX5WebViewExtension().invokeMiscMethod("setVideoParams", data);
+    }
 }
