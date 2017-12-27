@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://C:\workspace\OmnipotentPlayer\BlackDog.iml" filepath="C:\workspace\OmnipotentPlayer\BlackDog.iml" />
       <module fileurl="file://C:\workspace\OmnipotentPlayer\BlackDogxx.iml" filepath="C:\workspace\OmnipotentPlayer\BlackDogxx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OmnipotentPlayer.iml" filepath="$PROJECT_DIR$/OmnipotentPlayer.iml" />
       <module fileurl="file://G:\Android_project\workspace\OmnipotentPlayerz\OmnipotentPlayer.iml" filepath="G:\Android_project\workspace\OmnipotentPlayerz\OmnipotentPlayer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/OmnipotentPlayerz.iml" filepath="$PROJECT_DIR$/OmnipotentPlayerz.iml" />
       <module fileurl="file://C:\workspace\ads\OmnipotentPlayer\OmnipotentPlayerz.iml" filepath="C:\workspace\ads\OmnipotentPlayer\OmnipotentPlayerz.iml" />
       <module fileurl="file://$PROJECT_DIR$/Pushlib/Pushlib.iml" filepath="$PROJECT_DIR$/Pushlib/Pushlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />

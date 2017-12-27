@@ -14,16 +14,29 @@
         <item>sogou.com/</item>
         <item>a.baidu.com</item>
         <item>c.baidu.com</item>
-        <item>jump.yuyue006.cn/c.php</item>
-        <item>tt.admin60.com</item>
-        <item>t.waucu.cn</item>
-        <item>kfkfl.cn</item>
-        <item>img3.kfkfl.cn</item>
-        <item>img3.kfkfl.cn</item>
-        <item>c.cnzz.com</item>
-        <item>s13.cnzz.com</item>
-        <item>js.kfkfl.cn</item>
-        <item>img.lianmengma.com</item>
-
+        <item>yuyue006</item>
+        <item>waucu</item>
+        <item>hnhbyxdq</item>
+        <item>hongyangpai</item>
+        <!--线路2-->
+        <item>kfkfl</item>
+        <item>yqjxzw</item>
+        <!--线路3-->
+        <item>cnzz</item>
+        <item>hnsctc</item>
+        <item>kfkfl</item>
+        <item>lyunsd</item>
+        <item>scorecardresearch</item>
+        <item>hnsctc</item>
+        <item>jbflil</item>
+        <item>quw18</item>
+        <item>baidustatic</item>
+        <item>9ads</item>
+        <item>difnxm</item>
+        <item>ynjczy</item>
+        <item>lianmengma</item>
+        <item>admin60</item>
+        <!--线路5-->
+        <item>ylbdtg</item>
     </string-array>
 </resources>

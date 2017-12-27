@@ -27,6 +27,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 import java.util.ArrayList;
 
 import dog.black.com.blackdog.utils.AppShare;
+import dog.black.com.blackdog.videoPage.bean.AdsUrlsEntity;
 
 import static android.R.attr.name;
 
@@ -190,11 +191,19 @@ public class PageFragment extends Fragment {
 
 class ADFilterTool {
     public static boolean hasAd(Context context, String url) {
-        Resources res = context.getResources();
-        String[] adUrls = res.getStringArray(R.array.adBlockUrl);
-        for (String adUrl : adUrls) {
-            if (url.contains(adUrl)) {
-                return true;
+        if (VideoViewActivity.adsUrls != null && VideoViewActivity.adsUrls.size() != 0) {
+            for (AdsUrlsEntity adUrl : VideoViewActivity.adsUrls) {
+                if (url.contains(adUrl.getUrls())) {
+                    return true;
+                }
+            }
+        } else {
+            Resources res = context.getResources();
+            String[] adUrls = res.getStringArray(R.array.adBlockUrl);
+            for (String adUrl : adUrls) {
+                if (url.contains(adUrl)) {
+                    return true;
+                }
             }
         }
         return false;

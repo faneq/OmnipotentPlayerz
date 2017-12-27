@@ -27,6 +27,7 @@ public class App extends Application {
         //        OkGo.init(this);
     }
 
+
     private void initUmPush() {
         PushAgent mPushAgent = PushAgent.getInstance(this);
         //注册推送服务，每次调用register方法都会回调该接口

@@ -56,6 +56,7 @@ import dog.black.com.blackdog.mainView.bean.ShareInfo;
 import dog.black.com.blackdog.utils.AndroidUtil;
 import dog.black.com.blackdog.utils.AppShare;
 import dog.black.com.blackdog.utils.ShareUtils;
+import dog.black.com.blackdog.videoPage.bean.AdsUrlsEntity;
 import dog.black.com.blackdog.videoPage.bean.ConstantsBean;
 import dog.black.com.blackdog.videoPage.bean.PlayUrlEntity;
 import dog.black.com.blackdog.videoPage.bean.ViedeoTitle;
@@ -82,6 +83,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
     private RelativeLayout bannerAds;
     private ViewPager mViewPager;
     private String shareUrl;
+    public static List<AdsUrlsEntity> adsUrls;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,6 +109,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
         });
         BmobUpdateAgent.setUpdateOnlyWifi(false);
         initAds();
+        initAdsUrls();
         getShareInfo();
     }
 
@@ -274,6 +277,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
             }
         });
     }
+
 
     private void getvideoTitle() {
         BmobQuery<ViedeoTitle> query = new BmobQuery<>();
@@ -457,6 +461,21 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
                 if (e == null) {
                     shareUrl = object.get(0).getUrl();
                     setOtherView();
+                } else {
+                    Logger.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                }
+            }
+        });
+    }
+
+    private void initAdsUrls() {
+        BmobQuery<AdsUrlsEntity> query = new BmobQuery<>();
+        //执行查询方法
+        query.findObjects(new FindListener<AdsUrlsEntity>() {
+            @Override
+            public void done(List<AdsUrlsEntity> object, BmobException e) {
+                if (e == null) {
+                    adsUrls = object;
                 } else {
                     Logger.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
                 }

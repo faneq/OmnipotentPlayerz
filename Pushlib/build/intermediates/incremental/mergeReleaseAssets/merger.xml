@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="G:\Android_project\workspace\OmnipotentPlayerz\Pushlib\assets"/><source path="G:\Android_project\workspace\OmnipotentPlayerz\Pushlib\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="G:\Android_project\workspace\OmnipotentPlayerz\Pushlib\build-types\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\workspace\ads\OmnipotentPlayer\Pushlib\assets"/><source path="C:\workspace\ads\OmnipotentPlayer\Pushlib\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="C:\workspace\ads\OmnipotentPlayer\Pushlib\build-types\release\assets"/></dataSet></merger>
