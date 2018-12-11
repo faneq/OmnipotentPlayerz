@@ -60,6 +60,7 @@ import dog.black.com.blackdog.videoPage.bean.AdsUrlsEntity;
 import dog.black.com.blackdog.videoPage.bean.ConstantsBean;
 import dog.black.com.blackdog.videoPage.bean.PlayUrlEntity;
 import dog.black.com.blackdog.videoPage.bean.ViedeoTitle;
+import dog.black.com.blackdog.widget.CustomScrollViewPager;
 
 /**
  * Created by feq on 2017/2/25.
@@ -81,7 +82,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
     private MyHandler handler = new MyHandler(this);
     private final static int START_CODE = 2000;
     private RelativeLayout bannerAds;
-    private ViewPager mViewPager;
+    private CustomScrollViewPager mViewPager;
     private String shareUrl;
     public static List<AdsUrlsEntity> adsUrls;
 
@@ -301,7 +302,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void setOtherView() {
-        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        mViewPager = (CustomScrollViewPager) findViewById(R.id.viewPager);
         mViewPager.setOffscreenPageLimit(4);
         adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), this, mDatasTitle);
         mViewPager.setAdapter(adapter);

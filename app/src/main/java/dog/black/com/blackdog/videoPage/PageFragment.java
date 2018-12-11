@@ -113,6 +113,7 @@ public class PageFragment extends Fragment {
                 return true;
             }
         });
+
         //http/https混合
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             webSettings.setMixedContentMode(WebSettings.LOAD_NORMAL);

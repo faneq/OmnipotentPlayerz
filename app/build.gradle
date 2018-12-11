@@ -11,11 +11,27 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk { abiFilters "armeabi", "armeabi-v7a", "x86", "mips" }
         multiDexEnabled true
+
+        // dex突破65535限制
+        multiDexEnabled true
+        // 默认打包渠道（官方）
+        manifestPlaceholders = [APP_CHANNEL_VALUE: "官方"]
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        wandoujia {}
+        qihu360 {}
+        baidu {}
+        xiaomi {}
+        uc {}
+
+        productFlavors.all {
+            flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
     }
 }
