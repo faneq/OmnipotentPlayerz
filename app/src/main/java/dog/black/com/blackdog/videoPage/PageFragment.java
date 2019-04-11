@@ -26,6 +26,8 @@ import com.tencent.smtt.sdk.WebViewClient;
 
 import java.util.ArrayList;
 
+import dog.black.com.blackdog.App;
+import dog.black.com.blackdog.utils.AndroidUtil;
 import dog.black.com.blackdog.utils.AppShare;
 import dog.black.com.blackdog.videoPage.bean.AdsUrlsEntity;
 
@@ -92,6 +94,9 @@ public class PageFragment extends Fragment {
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
+                if (s.contains("play.html") || s.contains("/cover")) {
+                    Toast.makeText(App.getInstance(), "播放页面", Toast.LENGTH_SHORT).show();
+                }
                 if (!ADFilterTool.hasAd(getContext(), s)) {
                     return super.shouldInterceptRequest(webView, url);//正常加载
                 } else {
@@ -123,6 +128,12 @@ public class PageFragment extends Fragment {
             public void onProgressChanged(WebView webView, int newProgress) {
                 super.onProgressChanged(webView, newProgress);
                 if (newProgress == 100) {
+                    String url = webView.getUrl();
+                    if (url.contains("play.html") || url.contains("/cover")) {
+                        getActivity().findViewById(R.id.fab).setVisibility(View.VISIBLE);
+                    } else {
+                        getActivity().findViewById(R.id.fab).setVisibility(View.GONE);
+                    }
                     mProgressBar.setVisibility(View.INVISIBLE);
                 } else {
                     if (View.INVISIBLE == mProgressBar.getVisibility()) {

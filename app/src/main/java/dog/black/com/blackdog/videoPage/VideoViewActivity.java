@@ -93,6 +93,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
         bannerAds = (RelativeLayout) findViewById(R.id.banner_ads);
         findViewById(R.id.bt_question).setOnClickListener(this);
         findViewById(R.id.share).setOnClickListener(this);
+        findViewById(R.id.fab).setOnClickListener(this);
         PushAgent.getInstance(this).onAppStart();
         //第一：默认初始化
         Bmob.initialize(this, "a209a5bf05f24481f85b1778be4b6a4d");
@@ -146,6 +147,10 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.fab:
+                mCurrentFragment = adapter.getCurrentFragment();
+                mCurrentFragment.play();
+                break;
             case R.id.bt_play:
                 mCurrentFragment = adapter.getCurrentFragment();
                 mCurrentFragment.play();
