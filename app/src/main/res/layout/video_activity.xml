@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="match_parent" android:layout_width="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-
-        android:layout_alignParentEnd="true"
-        android:visibility="gone"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignStart="@+id/fab1"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="74dp" />
+
+        android:layout_marginBottom="82dp"
+        android:src="@mipmap/play"
+        android:visibility="gone"
+        app:backgroundTint="#55e967"
+        app:rippleColor="#409a36" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab1"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="133dp"
+        android:src="@mipmap/change"
+        android:visibility="gone"
+        app:backgroundTint="#95d1ff"
+        app:rippleColor="#6534c7" />
 
     <LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -21,6 +39,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/bg"
         android:orientation="horizontal">
 
         <android.support.design.widget.TabLayout
@@ -28,6 +47,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="45dp"
+            app:tabBackground="@color/bg"
+            app:tabTextColor="@color/white"
+            app:tabSelectedTextColor="#dbdbdb"
             app:tabMode="scrollable" />
 
         <ImageView
@@ -41,12 +63,13 @@
             android:src="@mipmap/share" />
     </RelativeLayout>
 
-    <dog.black.com.blackdog.widget.CustomScrollViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#ffffff" />
+        <dog.black.com.blackdog.widget.CustomScrollViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="-2dp"
+            android:layout_weight="1"
+            android:background="#ffffff" />
     <RelativeLayout
         android:id="@+id/banner_ads"
         android:layout_width="wrap_content"
@@ -60,6 +83,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center">
 
             <Button
@@ -74,6 +99,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -118,7 +145,8 @@
                 android:layout_margin="3dp"
                 android:layout_marginRight="@dimen/dp_10"
                 android:background="@mipmap/change"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:layout_marginEnd="@dimen/dp_10" />
         </LinearLayout>
 
         <LinearLayout

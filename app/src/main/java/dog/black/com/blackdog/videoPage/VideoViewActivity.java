@@ -2,10 +2,12 @@ package dog.black.com.blackdog.videoPage;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -86,14 +88,17 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
     private String shareUrl;
     public static List<AdsUrlsEntity> adsUrls;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.bg));//设置状态栏背景色
         setContentView(R.layout.video_activity);
         bannerAds = (RelativeLayout) findViewById(R.id.banner_ads);
         findViewById(R.id.bt_question).setOnClickListener(this);
         findViewById(R.id.share).setOnClickListener(this);
         findViewById(R.id.fab).setOnClickListener(this);
+        findViewById(R.id.fab1).setOnClickListener(this);
         PushAgent.getInstance(this).onAppStart();
         //第一：默认初始化
         Bmob.initialize(this, "a209a5bf05f24481f85b1778be4b6a4d");
@@ -150,6 +155,10 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
             case R.id.fab:
                 mCurrentFragment = adapter.getCurrentFragment();
                 mCurrentFragment.play();
+                break;
+            case R.id.fab1:
+                MobclickAgent.onEvent(App.getInstance(), "00004");
+                showPop();
                 break;
             case R.id.bt_play:
                 mCurrentFragment = adapter.getCurrentFragment();

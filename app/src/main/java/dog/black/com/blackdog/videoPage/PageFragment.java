@@ -131,8 +131,10 @@ public class PageFragment extends Fragment {
                     String url = webView.getUrl();
                     if (url.contains("play.html") || url.contains("/cover")) {
                         getActivity().findViewById(R.id.fab).setVisibility(View.VISIBLE);
+                        getActivity().findViewById(R.id.fab1).setVisibility(View.VISIBLE);
                     } else {
                         getActivity().findViewById(R.id.fab).setVisibility(View.GONE);
+                        getActivity().findViewById(R.id.fab1).setVisibility(View.GONE);
                     }
                     mProgressBar.setVisibility(View.INVISIBLE);
                 } else {
