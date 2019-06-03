@@ -198,6 +198,11 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void showPop() {
+        //返回上一个页面，防止在播放页面无法播放，切换线路，播放地址变化
+        mCurrentFragment = adapter.getCurrentFragment();
+        mCurrentFragment.back();
+
+
         View view = View.inflate(getApplication(), R.layout.change_layout, null);
         view.findViewById(R.id.bt_add).setOnClickListener(this);
         mEet_name = (EditText) view.findViewById(R.id.et_name);

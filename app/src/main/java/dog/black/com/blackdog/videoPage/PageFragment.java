@@ -129,7 +129,8 @@ public class PageFragment extends Fragment {
                 super.onProgressChanged(webView, newProgress);
                 if (newProgress == 100) {
                     String url = webView.getUrl();
-                    if (url.contains("play.html") || url.contains("/cover")) {
+                    if (url.contains("play.html") || url.contains("/cover")||url.contains("iqiyi.com/v_19")
+                            ||url.contains("youku.com/video")||url.contains("le.com/vplay")) {
                         getActivity().findViewById(R.id.fab).setVisibility(View.VISIBLE);
                         getActivity().findViewById(R.id.fab1).setVisibility(View.VISIBLE);
                     } else {
