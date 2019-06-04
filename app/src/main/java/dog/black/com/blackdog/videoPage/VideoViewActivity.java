@@ -1,6 +1,7 @@
 package dog.black.com.blackdog.videoPage;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,6 +48,7 @@ import java.util.List;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.helper.GsonUtil;
 import cn.bmob.v3.listener.BmobUpdateListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
@@ -57,10 +60,13 @@ import dog.black.com.blackdog.mainView.adapter.ChangeAdapter;
 import dog.black.com.blackdog.mainView.bean.ShareInfo;
 import dog.black.com.blackdog.utils.AndroidUtil;
 import dog.black.com.blackdog.utils.AppShare;
+import dog.black.com.blackdog.utils.PhoneInfo;
 import dog.black.com.blackdog.utils.ShareUtils;
 import dog.black.com.blackdog.videoPage.bean.AdsUrlsEntity;
 import dog.black.com.blackdog.videoPage.bean.ConstantsBean;
+import dog.black.com.blackdog.videoPage.bean.PhoneInfoEntity;
 import dog.black.com.blackdog.videoPage.bean.PlayUrlEntity;
+import dog.black.com.blackdog.videoPage.bean.UpdataPhoneInfo;
 import dog.black.com.blackdog.videoPage.bean.ViedeoTitle;
 import dog.black.com.blackdog.widget.CustomScrollViewPager;
 
@@ -79,6 +85,7 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
     private List<ViedeoTitle> mDatasTitle = new ArrayList<>();
     private TextView mTv_curr_line;
     private BaseDialog mUpdateDialog;
+    private BaseDialog questionDialog;
     private TextView mConfirmBtn, mCancelBtn;
     private long firstTime = 0;
     private MyHandler handler = new MyHandler(this);
@@ -118,6 +125,26 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
         initAds();
         initAdsUrls();
         getShareInfo();
+        addPhoneInfo();
+        initQustionDialog();
+    }
+
+    private void initQustionDialog() {
+        if (AppShare.getInstence(App.getInstance()).getBoolean("isFirst", true)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("使用教程");
+            builder.setMessage("请查看教程后使用");
+            builder.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    MobclickAgent.onEvent(App.getInstance(), "00002");
+                    mViewPager.setCurrentItem(mDatasTitle.size() - 1);
+                }
+            });
+            builder.setCancelable(false);
+            builder.show();
+        }
+        AppShare.getInstence(App.getInstance()).putBooleanValue("isFirst", false);
     }
 
     private void initAds() {
@@ -257,7 +284,24 @@ public class VideoViewActivity extends AppCompatActivity implements View.OnClick
             }
         });
     }
-
+    public  void addPhoneInfo(){
+        if (AppShare.getInstence(App.getInstance()).getBoolean("isFirst", true)) {
+            GetPhoneInfoUtils getPhoneInfoUtils  = new GetPhoneInfoUtils();
+            String infos = GsonUtil.toJson(getPhoneInfoUtils.getPhoneInfo(this));
+            UpdataPhoneInfo phoneInfo = new UpdataPhoneInfo();
+            phoneInfo.setPhoneInfos(infos);
+            phoneInfo.save(new SaveListener<String>() {
+                @Override
+                public void done(String s, BmobException e) {
+                    if (e == null) {
+//                    Toast.makeText(getApplication(), "添加成功", Toast.LENGTH_SHORT).show();
+                    } else {
+//                    Toast.makeText(getApplication(), "添加失败"+e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
     private void getListVideoInf() {
         BmobQuery<PlayUrlEntity> query = new BmobQuery<>();
         //查询playerName叫“比目”的数据
