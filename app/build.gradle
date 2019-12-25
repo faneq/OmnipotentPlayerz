@@ -43,7 +43,7 @@ dependencies {
     })
     implementation 'com.android.support:appcompat-v7:25.1.1'
     testImplementation 'junit:junit:4.12'
-    implementation 'cn.bmob.android:bmob-sdk:3.5.0'
+    implementation 'cn.bmob.android:bmob-sdk:3.5.1'
     implementation 'com.android.support:support-v4:25.1.1'
     implementation 'cn.bmob.android:http-legacy:1.0'
     implementation 'com.orhanobut:logger:1.3'
