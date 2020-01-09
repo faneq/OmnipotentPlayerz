@@ -196,7 +196,7 @@ public class PageFragment extends Fragment {
         data.putBoolean("supportLiteWnd", false);
         //false：关闭小窗；true：开启小窗；不设置默认true，
 
-        data.putInt("DefaultVideoScreen", 2);
+        data.putInt("DefaultVideoScreen", 1);
         //1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
 
         mWebView.getX5WebViewExtension().invokeMiscMethod("setVideoParams", data);
