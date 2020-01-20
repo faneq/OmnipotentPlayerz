@@ -107,12 +107,13 @@ public class PageFragment extends Fragment {
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String s) {
                 loadHistoryUrls.add(s);
-                if (url.startsWith("http:") || url.startsWith("https:")) {
-                    return false;
+                if (s.startsWith("http:") || s.startsWith("https:")) {
+                    webView.loadUrl(s);
+                    return true;
                 }
                 try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//                    startActivity(intent);
                 } catch (Exception e) {
                 }
                 return true;
@@ -129,8 +130,8 @@ public class PageFragment extends Fragment {
                 super.onProgressChanged(webView, newProgress);
                 if (newProgress == 100) {
                     String url = webView.getUrl();
-                    if (url.contains("play.html") || url.contains("/cover")||url.contains("iqiyi.com/v_19")
-                            ||url.contains("youku.com/video")||url.contains("le.com/vplay")) {
+                    if (url.contains("play.html") || url.contains("/cover") || url.contains("iqiyi.com/v_19")
+                            || url.contains("youku.com/video") || url.contains("le.com/vplay")) {
                         getActivity().findViewById(R.id.fab).setVisibility(View.VISIBLE);
                         getActivity().findViewById(R.id.fab1).setVisibility(View.VISIBLE);
                     } else {
